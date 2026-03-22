@@ -1,17 +1,17 @@
 import api from './axios';
 
-const loginUser = async (data) => {
+const loginUser = async (params) => {
   try {
-    const res = api.post('/auth/login', data);
+    const res = await api.post('/auth/login', params);
     return res.data;
   } catch (error) {
     console.log(error);
   }
 };
 
-const registerUser = async (data) => {
+const registerUser = async (params) => {
   try {
-    const res = api.post('/auth/register', data);
+    const res = await api.post('/auth/register', params);
     return res.data;
   } catch (error) {
     console.log(error);
