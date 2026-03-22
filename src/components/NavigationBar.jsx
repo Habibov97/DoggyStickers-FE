@@ -12,10 +12,19 @@ export default function NavigationBar() {
             </p>
             <h3 className="text-black text-xl font-bold font-josefin tracking-tight mt-1">Doggy Stickers</h3>
           </div>
-          <div className="w-6 h-6">
-            <Link to={'/card'}>
-              <FaCartShopping className="w-6 h-6 text-purple-800" />
-            </Link>
+          <div className="flex gap-2 items-center">
+            <div className="w-6 h-6">
+              <Link to={'/card'}>
+                <FaCartShopping className="w-6 h-6 text-purple-800" />
+              </Link>
+            </div>
+            <div>
+              <Link to={'/login'}>
+                <p className="px-4 py-2 bg-[#F5F3FF] text-purple-700 font-semibold  font-josefin hover:bg-purple-700 hover:text-[#F5F3FF] transition-colors duration-300 rounded-xs">
+                  Sign in
+                </p>
+              </Link>
+            </div>
           </div>
         </div>
       </header>

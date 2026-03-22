@@ -1,3 +1,5 @@
+import Products from './Products';
+
 export default function Main() {
   return (
     <div className="my-10 mx-3">
@@ -7,6 +9,7 @@ export default function Main() {
           Times are tough. Liven up your home with some cute Doggy Stickers 🐶
         </p>
       </div>
+      <Products />
     </div>
   );
 }
