@@ -1,12 +1,25 @@
-import { useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './pages/Home';
+import AuthLayout from './layouts/AuthLayout';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import MainLayout from './layouts/MainLayout';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <h1 onClick={() => setCount(count + 1)}>{count}</h1>
-    </>
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<MainLayout />}>
+            <Route index element={<Home />} />
+          </Route>
+          <Route element={<AuthLayout />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
