@@ -5,6 +5,9 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import MainLayout from './layouts/MainLayout';
 import AuthProvider from './context/AuthProvider';
+import PrivateRoute from './components/PrivateRoute';
+import DashboardLayout from './layouts/DashboardLayout';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
@@ -12,6 +15,11 @@ function App() {
       <BrowserRouter>
         <AuthProvider>
           <Routes>
+            <Route element={<PrivateRoute />}>
+              <Route element={<DashboardLayout />}>
+                <Route path="/admin" element={<Dashboard />} />
+              </Route>
+            </Route>
             <Route element={<MainLayout />}>
               <Route index element={<Home />} />
             </Route>

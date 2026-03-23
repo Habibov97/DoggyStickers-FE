@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from './auth-context';
 import { currentUser } from '@/api/auth.api';
+import { useNavigate } from 'react-router-dom';
 
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function restoreUser() {
@@ -16,11 +18,9 @@ export default function AuthProvider({ children }) {
       }
       try {
         const res = await currentUser();
-        console.log('ME RESPONSE:', res);
 
         setUser(res.user ?? res);
-      } catch (err) {
-        console.log('Session restore failed!', err);
+      } catch {
         localStorage.removeItem('token');
       } finally {
         setLoading(false);
@@ -37,6 +37,7 @@ export default function AuthProvider({ children }) {
   const logout = () => {
     localStorage.removeItem('token');
     setUser(null);
+    navigate('/');
   };
 
   const value = { user, setUser, loading, login, logout };
