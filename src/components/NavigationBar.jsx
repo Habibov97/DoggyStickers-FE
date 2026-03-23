@@ -1,7 +1,14 @@
 import { Link } from 'react-router-dom';
 import Icon from '../assets/icon.svg?react';
 import { FaCartShopping } from 'react-icons/fa6';
+import { useAuthContext } from '@/context/AuthProvider';
 export default function NavigationBar() {
+  const { user, loading } = useAuthContext();
+
+  if (loading) {
+    return <p className="font-josefin text-2xl text-center">Loading...</p>;
+  }
+
   return (
     <>
       <header className="px-4 py-4 border border-b-2 border-gray-200">
@@ -19,11 +26,17 @@ export default function NavigationBar() {
               </Link>
             </div>
             <div>
-              <Link to={'/login'}>
+              {user ? (
                 <p className="px-4 py-2 bg-[#F5F3FF] text-purple-700 font-semibold  font-josefin hover:bg-purple-700 hover:text-[#F5F3FF] transition-colors duration-300 rounded-xs">
-                  Sign in
+                  {user?.username}
                 </p>
-              </Link>
+              ) : (
+                <Link to={'/login'}>
+                  <p className="px-4 py-2 bg-[#F5F3FF] text-purple-700 font-semibold  font-josefin hover:bg-purple-700 hover:text-[#F5F3FF] transition-colors duration-300 rounded-xs">
+                    Sign in
+                  </p>
+                </Link>
+              )}
             </div>
           </div>
         </div>
