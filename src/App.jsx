@@ -23,6 +23,7 @@ function App() {
             <Route element={<PrivateRoute />}>
               <Route element={<DashboardLayout />}>
                 <Route path="/admin" element={<Dashboard />}>
+                  <Route index element={<MyProfile />} />
                   <Route path="/admin/users" element={<Users />} />
                   <Route path="/admin/my-profile" element={<MyProfile />} />
                   <Route element={<ProductsDashboard />}>

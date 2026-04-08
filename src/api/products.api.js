@@ -8,3 +8,11 @@ export const productsList = async () => {
 export const createProduct = async (data) => {
   return await api.post('/products', data);
 };
+
+export const createProductImage = async (productId, formData) => {
+  return await api.post(`/products/${productId}/images`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+};

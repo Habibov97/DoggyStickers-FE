@@ -30,7 +30,7 @@ export default function Users() {
         <TableBody className="text-white">
           {data?.map((user) => {
             return (
-              <TableRow>
+              <TableRow key={user.id}>
                 <TableCell className="font-medium">{user.id}</TableCell>
                 <TableCell>{user.username}</TableCell>
                 <TableCell>{user.email}</TableCell>
