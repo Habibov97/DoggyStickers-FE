@@ -2,8 +2,10 @@ import { Link } from 'react-router-dom';
 import Icon from '../assets/icon.svg?react';
 import { FaCartShopping } from 'react-icons/fa6';
 import { useAuthContext } from '@/context/AuthProvider';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
+import { Button } from './ui/button';
 export default function NavigationBar() {
-  const { user, loading } = useAuthContext();
+  const { user, loading, logout } = useAuthContext();
 
   if (loading) {
     return <p className="font-josefin text-2xl text-center">Loading...</p>;
@@ -27,9 +29,27 @@ export default function NavigationBar() {
             </div>
             <div>
               {user ? (
-                <p className="px-4 py-2 bg-[#F5F3FF] text-purple-700 font-semibold  font-josefin hover:bg-purple-700 hover:text-[#F5F3FF] transition-colors duration-300 rounded-xs">
-                  {user?.username}
-                </p>
+                <HoverCard openDelay={10} closeDelay={100}>
+                  <HoverCardTrigger asChild>
+                    <Button className="px-4 py-2 bg-[#F5F3FF] text-purple-700 font-semibold  font-josefin hover:bg-purple-700 hover:text-[#F5F3FF] transition-colors duration-300 rounded-xs">
+                      {user?.username}
+                    </Button>
+                  </HoverCardTrigger>
+                  <HoverCardContent className="flex w-25 flex-col gap-0.5">
+                    {user?.role === 'admin' ? (
+                      <Link to={'/admin/users'} className="font-semibold font-josefin">
+                        My Profile
+                      </Link>
+                    ) : (
+                      <Link to={'/user/my-profile'} className="font-semibold font-josefin">
+                        My Profile
+                      </Link>
+                    )}
+                    <Link onClick={logout} className="font-semibold font-josefin">
+                      Logout
+                    </Link>
+                  </HoverCardContent>
+                </HoverCard>
               ) : (
                 <Link to={'/login'}>
                   <p className="px-4 py-2 bg-[#F5F3FF] text-purple-700 font-semibold  font-josefin hover:bg-purple-700 hover:text-[#F5F3FF] transition-colors duration-300 rounded-xs">

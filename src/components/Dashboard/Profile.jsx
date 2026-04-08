@@ -32,12 +32,13 @@ export default function Profile() {
 
       <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 px-3 mb-1">Profile</p>
 
-      {profileItems.map(({ to, icon, label }) => (
-        <NavLink key={to} to={to} className={({ isActive }) => (isActive ? activeClass : inactiveClass)}>
-          <span className="shrink-0">{icon}</span>
-          <span>{label}</span>
-        </NavLink>
-      ))}
+      {user?.role === 'admin' &&
+        profileItems.map(({ to, icon, label }) => (
+          <NavLink key={to} to={to} className={({ isActive }) => (isActive ? activeClass : inactiveClass)}>
+            <span className="shrink-0">{icon}</span>
+            <span>{label}</span>
+          </NavLink>
+        ))}
 
       {/* Logout */}
       <button

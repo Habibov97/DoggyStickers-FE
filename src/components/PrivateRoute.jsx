@@ -11,6 +11,8 @@ export default function PrivateRoute() {
 
   if (user && user.role === 'admin') {
     return <Outlet />;
+  } else if (user && user.role === 'user') {
+    return <Outlet />;
   } else {
     return <p>You do not have access to this page</p>;
   }

@@ -1,12 +1,17 @@
 import NavigationMenu from './NavigationMenu';
 import Profile from './Profile';
 import Icon from '../../assets/icon.svg?react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Navigation() {
+  const navigate = useNavigate();
   return (
     <aside className="w-64 h-screen flex flex-col bg-slate-900 dark:bg-slate-950 border-r border-slate-700/50 shrink-0">
       {/* Logo */}
-      <div className="flex items-center gap-2.5 px-5 py-5 border-b border-slate-700/50">
+      <div
+        onClick={() => navigate('/')}
+        className="flex items-center gap-2.5 px-5 py-5 border-b border-slate-700/50 cursor-pointer"
+      >
         <div className="w-8 h-8 text-violet-400">
           <Icon className="w-full h-full" />
         </div>

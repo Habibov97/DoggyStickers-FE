@@ -1,6 +1,5 @@
-import React from 'react';
-import Navigation from '../components/Dashboard/Navigation';
+import { Outlet } from 'react-router-dom';
 
 export default function Dashboard() {
-  return <div>salam</div>;
+  return <div>{<Outlet />}</div>;
 }

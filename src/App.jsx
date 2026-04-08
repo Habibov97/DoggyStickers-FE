@@ -8,6 +8,11 @@ import AuthProvider from './context/AuthProvider';
 import PrivateRoute from './components/PrivateRoute';
 import DashboardLayout from './layouts/DashboardLayout';
 import Dashboard from './pages/Dashboard';
+import Users from './pages/Users';
+import MyProfile from './pages/MyProfile';
+import ProductsDashboard from './components/Dashboard/ProductsDashboard';
+import CreateProduct from './components/Dashboard/CreateProduct';
+import ProductsList from './components/Dashboard/ProductsList';
 
 function App() {
   return (
@@ -17,7 +22,17 @@ function App() {
           <Routes>
             <Route element={<PrivateRoute />}>
               <Route element={<DashboardLayout />}>
-                <Route path="/admin" element={<Dashboard />} />
+                <Route path="/admin" element={<Dashboard />}>
+                  <Route path="/admin/users" element={<Users />} />
+                  <Route path="/admin/my-profile" element={<MyProfile />} />
+                  <Route element={<ProductsDashboard />}>
+                    <Route path="/admin/products" element={<ProductsList />} />
+                    <Route path="/admin/products/create-product" element={<CreateProduct />} />
+                  </Route>
+                </Route>
+                <Route path="/user" element={<Dashboard />}>
+                  <Route path="/user/my-profile" element={<MyProfile />} />
+                </Route>
               </Route>
             </Route>
             <Route element={<MainLayout />}>

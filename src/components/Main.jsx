@@ -1,4 +1,4 @@
-import Products from '../utils/Products';
+import Products from './Products';
 
 export default function Main() {
   return (
